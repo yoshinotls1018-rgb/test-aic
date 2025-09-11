@@ -1,12 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>私の Website</title>
+    <title>ドラえもんの自己紹介</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 2em;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #e7f3ff;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        strong {
+            color: #0056b3;
+        }
+        .about p {
+            font-style: italic;
+            text-align: center;
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to my ウェブサイトへ!</h1>
-    <p>This is a simple placeholder page.</p>
+
+    <div class="container">
+        <header>
+            <h1>ドラえもん</h1>
+        </header>
+
+        <main>
+            <section class="profile">
+                <h2>プロフィール</h2>
+                <p><strong>所属:</strong> 野比家</p>
+                <p><strong>職業:</strong> 家事手伝い</p>
+                <p><strong>趣味:</strong> ネコと戯れること</p>
+                <p><strong>好きなこと:</strong> 自分の特技や功績を褒めてもらうこと</p>
+            </section>
+
+            <section class="skills">
+                <h2>スキル・特技</h2>
+                <ul>
+                    <li>家事手伝い2級</li>
+                    <li>どら焼きの早食い</li>
+                    <li>どら焼きの大食い</li>
+                </ul>
+            </section>
+
+            <section class="about">
+                <h2>自己紹介</h2>
+                <p>
+                    あたまテカテカ　さえてピカピカ<br>
+                    それがどうした　ぼくドラえもん
+                </p>
+            </section>
+        </main>
+    </div>
+
 </body>
 </html>
