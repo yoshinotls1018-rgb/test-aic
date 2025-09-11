@@ -19,15 +19,31 @@ pointLight.position.set(0, 50, 50);
 scene.add(pointLight);
 
 // === どら焼きの準備 ===
-const dorayakiGeometry = new THREE.CylinderGeometry(1, 1, 0.4, 32);
-const dorayakiMaterial = new THREE.MeshStandardMaterial({ color: '#A0522D', roughness: 0.8 });
+const doughMaterial = new THREE.MeshStandardMaterial({ color: '#A0522D', roughness: 0.8 });
+const ankoMaterial = new THREE.MeshStandardMaterial({ color: '#4B0082', roughness: 0.8 }); // Indigo
+const doughGeometry = new THREE.CylinderGeometry(1, 1, 0.2, 32);
+const ankoGeometry = new THREE.CylinderGeometry(0.9, 0.9, 0.2, 32);
 
 const dorayakis = [];
 const MOUTH_POS = new THREE.Vector3(0, -40, 0);
 
 function createDorayaki() {
+    const group = new THREE.Group();
+
+    const topDough = new THREE.Mesh(doughGeometry, doughMaterial);
+    topDough.position.y = 0.15;
+
+    const anko = new THREE.Mesh(ankoGeometry, ankoMaterial);
+
+    const bottomDough = new THREE.Mesh(doughGeometry, doughMaterial);
+    bottomDough.position.y = -0.15;
+
+    group.add(topDough);
+    group.add(anko);
+    group.add(bottomDough);
+
     const scale = Math.random() * 2 + 1; // 大きさをランダムに
-    const dorayaki = new THREE.Mesh(dorayakiGeometry, dorayakiMaterial);
+    const dorayaki = group;
 
     // 初期位置とスケール
     dorayaki.position.x = (Math.random() - 0.5) * 100;

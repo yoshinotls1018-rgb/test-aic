@@ -124,6 +124,9 @@ h2::before {
     position: relative;
     top: -2px;
     animation: dorayaki-dance 2s infinite ease-in-out;
+    /* Anko layer */
+    background-color: #4B0082; /* Indigo */
+    border-radius: 0 0 5px 5px;
 }
 
 h2::before::before,
@@ -139,11 +142,11 @@ h2::before::after {
 }
 
 h2::before::before {
-    top: -6px;
+    top: -7px; /* Move top dough up */
 }
 
 h2::before::after {
-    top: 0px;
+    top: 4px;  /* Move bottom dough down */
     transform: scaleY(0.8);
     background-color: #8B4513;
 }
