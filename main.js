@@ -12,59 +12,41 @@ container.appendChild(renderer.domElement);
 camera.position.z = 50;
 
 // === ライト ===
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+// テクスチャを貼った板ポリゴンには複雑なライトは不要なため、環境光のみにします
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
 scene.add(ambientLight);
-const pointLight = new THREE.PointLight(0xffffff, 1.2, 200);
-pointLight.position.set(0, 50, 50);
-scene.add(pointLight);
 
 // === どら焼きの準備 ===
-const doughMaterial = new THREE.MeshStandardMaterial({ color: '#A0522D', roughness: 0.8 });
-const ankoMaterial = new THREE.MeshStandardMaterial({ color: '#4B0082', roughness: 0.8 }); // Indigo
-const doughGeometry = new THREE.CylinderGeometry(1, 1, 0.2, 32);
-const ankoGeometry = new THREE.CylinderGeometry(0.9, 0.9, 0.2, 32);
+const textureLoader = new THREE.TextureLoader();
+const dorayakiTexture = textureLoader.load('rectangle_large_type_2_f4510c4cdc76deef5eea53d122902a00.webp');
+const dorayakiMaterial = new THREE.MeshBasicMaterial({
+    map: dorayakiTexture,
+    transparent: true // 画像の透明部分を有効にする
+});
+const dorayakiGeometry = new THREE.PlaneGeometry(1, 1); // 1x1の板ポリゴン
 
 const dorayakis = [];
 const MOUTH_POS = new THREE.Vector3(0, -40, 0);
 
 function createDorayaki() {
-    const group = new THREE.Group();
+    const dorayaki = new THREE.Mesh(dorayakiGeometry, dorayakiMaterial);
 
-    const topDough = new THREE.Mesh(doughGeometry, doughMaterial);
-    topDough.position.y = 0.15;
-
-    const anko = new THREE.Mesh(ankoGeometry, ankoMaterial);
-
-    const bottomDough = new THREE.Mesh(doughGeometry, doughMaterial);
-    bottomDough.position.y = -0.15;
-
-    group.add(topDough);
-    group.add(anko);
-    group.add(bottomDough);
-
-    const scale = Math.random() * 2 + 1; // 大きさをランダムに
-    const dorayaki = group;
-
-    // 初期位置とスケール
-    dorayaki.position.x = (Math.random() - 0.5) * 100;
-    dorayaki.position.y = 60 + (Math.random() * 20);
+    // 大きさをランダムに
+    const scale = Math.random() * 10 + 5;
     dorayaki.scale.set(scale, scale, scale);
 
-    // 回転
-    dorayaki.rotation.x = Math.random() * Math.PI * 2;
-    dorayaki.rotation.y = Math.random() * Math.PI * 2;
+    // 初期位置
+    dorayaki.position.x = (Math.random() - 0.5) * 100;
+    dorayaki.position.y = 60 + (Math.random() * 20);
 
     // カスタムプロパティ
     dorayaki.userData.velocity = new THREE.Vector3(
-        (Math.random() - 0.5) * 0.1,
+        (Math.random() - 0.5) * 0.05,
         -0.1 - Math.random() * 0.1, //落下速度
         0
     );
-    dorayaki.userData.rotationSpeed = new THREE.Vector3(
-        (Math.random() - 0.5) * 0.02,
-        (Math.random() - 0.5) * 0.02,
-        0
-    );
+    // Z軸周りの回転速度
+    dorayaki.userData.rotationSpeed = (Math.random() - 0.5) * 0.02;
     dorayaki.userData.isSucking = false;
 
     dorayakis.push(dorayaki);
@@ -92,8 +74,7 @@ function animate() {
         } else {
             // 通常の落下
             dorayaki.position.add(dorayaki.userData.velocity);
-            dorayaki.rotation.x += dorayaki.userData.rotationSpeed.x;
-            dorayaki.rotation.y += dorayaki.userData.rotationSpeed.y;
+            dorayaki.rotation.z += dorayaki.userData.rotationSpeed;
 
             // 画面下部に到達したら吸い込みモードへ
             if (dorayaki.position.y < -35) {

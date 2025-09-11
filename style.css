@@ -18,9 +18,10 @@ body::before {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 40 40'%3e%3cg opacity='0.3'%3e%3cpath d='M 10 20 A 10 5 0 0 1 30 20' fill='%23A0522D' /%3e%3cpath d='M 10 21 A 10 5 0 0 0 30 21' fill='%238B4513' /%3e%3c/g%3e%3c/svg%3e");
+    background-image: url('rectangle_large_type_2_f4510c4cdc76deef5eea53d122902a00.webp');
+    background-size: 100px;
     background-repeat: repeat;
-    opacity: 0.5;
+    opacity: 0.1;
     z-index: -1;
 }
 
