@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ドラえもんの自己紹介</title>
     <link rel="stylesheet" href="style.css">
+    <script async src="https://unpkg.com/es-module-shims@1.10.0"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.164.1/build/three.module.js"
+        }
+    }
+    </script>
 </head>
 <body>
+
+    <div id="canvas-container"></div>
 
     <div class="container">
         <header>
@@ -42,6 +52,8 @@
             </section>
         </main>
     </div>
+
+    <script type="module" src="main.js"></script>
 
 </body>
 </html>
