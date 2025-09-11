@@ -18,7 +18,7 @@ scene.add(ambientLight);
 
 // === どら焼きの準備 ===
 const textureLoader = new THREE.TextureLoader();
-const dorayakiTexture = textureLoader.load('rectangle_large_type_2_f4510c4cdc76deef5eea53d122902a00.webp');
+const dorayakiTexture = textureLoader.load('shiro.png');
 const dorayakiMaterial = new THREE.MeshBasicMaterial({
     map: dorayakiTexture,
     transparent: true // 画像の透明部分を有効にする
